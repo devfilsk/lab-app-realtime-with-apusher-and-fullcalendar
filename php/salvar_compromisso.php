@@ -1,6 +1,7 @@
 <?php
 
 header("Content-Type: application/json");
+require "../vendor/autoload.php";
 
 require "conexao.php";
 
@@ -27,6 +28,24 @@ if(!empty($nome) && !empty($inicio) && !empty($fim)){
         $retorno['title'] = $nome;
         $retorno['start'] = $inicio;
         $retorno['end'] = $fim;
+
+        //Enviando dados para o pusher
+        $options = [
+            'cluster' => 'us2',
+            'useTLS' => true
+        ];
+        $pusher = new Pusher\Pusher(
+            '9cc2909513fc23145811',
+            'd7e8eabb9ed3bc9c8254',
+            '660130',
+            $options
+        );
+
+        $data['nome'] = $nome;
+        $data['dia'] = date("d/m/Y", strtotime($inicio));
+        $data['hora'] = date("H:i", strtotime($inicio));
+        $pusher->trigger('my-channel', 'my-event', $data);
+
     }else{
         $retorno['status'] = "fail";
         $retorno['mensagem'] = "Ocorreu um erro ao salvar o agendamento";

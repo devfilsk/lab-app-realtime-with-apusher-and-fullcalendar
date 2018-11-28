@@ -35,6 +35,12 @@
                 defaultView: "agendaWeek",
                 selectable: true,
                 selectHelper: true,
+                events: "http://localhost:8000/php/listar_compromissos.php", //arquivo json ou URL que retorne um json
+                minTime: "08:00:00", // configuração do tempo minimo do dia para ser exibido
+                maxTime: "19:00:00", // configuração do tempo maximo do dia para ser exibido
+                slotDuration: '00:10:00', // intervalo de tempo de 10 em 10 minutos
+                slotLabelFormat: "HH:mm", // Formato das horas para aparecer no calendário
+                allDaySlot: false, // retira o Slot "dia inteiro
                 select: function (start, end) {
                     //formatando data com moment
                     let inicio = moment(start).format("YYYY-MM-DD HH:mm");

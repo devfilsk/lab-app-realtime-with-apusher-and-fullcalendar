@@ -1,0 +1,14 @@
+{
+  "name": "lab-app-realtime-with-fullcalendar-push-php",
+  "version": "1.0.0",
+  "description": "Estudos de app real time com full calendar e pusher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fullcalendar": "^3.9.0"
+  }
+}
